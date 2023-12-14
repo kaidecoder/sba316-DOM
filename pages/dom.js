@@ -76,7 +76,7 @@ function startGame() {
   console.log("startGame")
   createBoard();
   appendShips();
-  toggleShips();
+  
   birdSound = new Audio("../sounds/birds.mp3");
   birdSound.play();
   countdown = timeLimit / 1000;
@@ -84,6 +84,7 @@ function startGame() {
   scoreEl.style.display = "block";
   countdownEl.textContent = countdown;
   timeUp = false;
+  toggleShips();
   score = 0;
   setTimeout(function () {
     timeUp = true;
@@ -104,7 +105,8 @@ function startGame() {
 }
 
 function endGame() {
-  shipDeath.stop();
+    console.log("game")
+  shipDeath.pause();
   birdSound.stop();
   gameOverSound = new Audio("../sounds/images_sounds_game_over.wav");
   gameOverSound.play();
@@ -120,8 +122,8 @@ function endGame() {
 startEl.addEventListener("click", startGame);
 
 function sinkShip(e) {
-  let deathSound = new Audio("../sounds/images_sounds_enemy-death.wav");
-  deathSound.play();
+  shipDeath = new Audio("../sounds/images_sounds_enemy-death.wav");
+  shipDeath.play();
   score++;
   this.style.backgroundImage = 'url("../red-x.jpg")'
   this.style.backgroundPosition = "center"
@@ -131,7 +133,5 @@ function sinkShip(e) {
 }
 
 ships.forEach((ship) => {
-  shipDeath = new Audio("../sounds/images_sounds_enemy-death.wav");
-  shipDeath.play();
   return ship.addEventListener("click", sinkShip);
 });
