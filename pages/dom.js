@@ -55,7 +55,7 @@ function toggleShips() {
   box.forEach((item) => {
     item.addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(item);
+    //   console.log(item);
       if (item.classList.contains("no-ship")) {
         return;
       } else if (item.classList.contains("hidden")) {
@@ -98,8 +98,6 @@ function startGame() {
           sinkShip();
           clearInterval(startCountDown);
           timeUp = true;
-          shipDeath.stop()
-          clickSound.stop()
           endGame();
       
     }
@@ -108,8 +106,6 @@ function startGame() {
 
 function endGame() {
     console.log("game")
-  shipDeath.pause();
-  birdSound.stop();
   gameOverSound = new Audio("../sounds/images_sounds_game_over.wav");
   gameOverSound.play();
   if (score > 10) {
@@ -124,14 +120,17 @@ function endGame() {
 startEl.addEventListener("click", startGame);
 
 function sinkShip(e) {
-  shipDeath = new Audio("../sounds/images_sounds_enemy-death.wav");
-  shipDeath.play();
-  score++;
-  this.style.backgroundImage = 'url("../red-x.jpg")'
-  this.style.backgroundPosition = "center"
-  this.style.backgroundRepeat = "no-repeat"
-  this.style.backgroundSize = "cover"
-  scoreEl.textContent = score;
+    while(timeUp = false){
+        shipDeath = new Audio("../sounds/images_sounds_enemy-death.wav");
+        shipDeath.play();
+        score++;
+        this.style.backgroundImage = 'url("../red-x.jpg")'
+        this.style.backgroundPosition = "center"
+        this.style.backgroundRepeat = "no-repeat"
+        this.style.backgroundSize = "cover"
+        scoreEl.textContent = score;
+    }
+    timeUp = true
 }
 
 ships.forEach((ship) => {
