@@ -98,6 +98,8 @@ function startGame() {
           sinkShip();
           clearInterval(startCountDown);
           timeUp = true;
+          shipDeath.stop()
+          clickSound.stop()
           endGame();
       
     }
