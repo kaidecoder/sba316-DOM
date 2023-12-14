@@ -35,7 +35,7 @@ let ships = document.querySelectorAll(".ship");
 function appendShips() {
   Array.from(box).forEach((boxlet) => {
     if (boxlet.innerText) {
-      boxlet.innerHTML += `<img src="./ship.png" class="ship " style="width: 40px; height: 40px"/>`;
+      boxlet.innerHTML += `<img src="../ship.png" class="ship " style="width: 40px; height: 40px"/>`;
     }
   });
 }
@@ -64,7 +64,7 @@ function toggleShips() {
         item.style.backgroundColor = "pink";
         item.style.border = "5px solid purple";
       } else {
-        let clickSound = new Audio("./images/sounds_click.wav");
+        let clickSound = new Audio("../sounds/images_sounds_click.wav");
         clickSound.play();
         score += 10;
         item.classList.toggle("hidden");
@@ -79,7 +79,7 @@ function startGame() {
   createBoard();
   appendShips();
   toggleShips();
-  birdSound = new Audio("./sounds/birds.mp3");
+  birdSound = new Audio("../sounds/birds.mp3");
   birdSound.play();
   countdown = timeLimit / 1000;
   scoreEl.textContent = 0;
@@ -108,7 +108,7 @@ function startGame() {
 function endGame() {
   deathSound.stop();
   birdSound.stop();
-  gameOverSound = new Audio("./images/sounds_game_over.wav");
+  gameOverSound = new Audio("../sounds/images_sounds_game_over.wav");
   gameOverSound.play();
   if (score > 10) {
     countdownEl.textContent = "Great Job!!";
@@ -122,7 +122,7 @@ function endGame() {
 startEl.addEventListener("click", startGame);
 
 function sinkShip(e) {
-  let deathSound = new Audio("./sounds/images_sounds_enemy-death.wav");
+  let deathSound = new Audio("../sounds/images_sounds_enemy-death.wav");
   deathSound.play();
   score++;
   this.style.backgroundImage = 'url("./red-x.jpg")'
@@ -133,7 +133,7 @@ function sinkShip(e) {
 }
 
 ships.forEach((ship) => {
-  let shipDeath = new Audio("./sounds/images_sounds_enemy-death.wav");
+  let shipDeath = new Audio("../sounds/images_sounds_enemy-death.wav");
   shipDeath.play();
   return ship.addEventListener("click", sinkShip);
 });
