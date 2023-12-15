@@ -1,94 +1,86 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  
-  .game-board {
-    border: 5px solid green;
-    font-family: cursive;
-    font-weight: bold;
-  }
-  
-  .grid {
-    display: grid;
-    background-color: #ccc;
-    max-width: 900px;
-    width: 500px;
-    margin: 0 auto;
-    grid-template-columns: repeat(7, 1fr);
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .box {
-    text-align: center;
-    padding: 5px;
-    font-weight: bold;
-    position: relative;
-  }
-  
-  /* .battleship {
-    position: relative;
-    left: 20px;
-    top: 10px;
-    width: 15px;
-    object-fit: contain;
-    display: none;
-  } */
-  
-  .hidden {
-    opacity: 0;
-  }
-  
-  .chosen {
-    opacity: 1;
-  }
-  
-  .countdown {
-    position: absolute;
-    top: 600px;
-    right: 100px;
-    width: 30px;
-    font-size: 50px;
-    text-align: center;
-    color: red;
-  }
-  
-  button {
-    position: absolute;
-    top: 30px;
-    right: 100px;
-    /* left: 50%; */
-    /* transform: translate(-50%, 0); */
-    background: #010124;
-    color: white;
-    font-size: 18px;
-    text-transform: uppercase;
-    padding: 20px 50px;
-    border-radius: 5px;
-    z-index: 200;
-    cursor: pointer;
-    border: none;
-    outline: none;
-  }
-  
-  .score {
-    font-size: 80px;
-    color: black;
-    position: absolute;
-    top: 20%;
-    right: 100px;
-    /* left: 50%; */
-    /* transform: translate(-50%, -50%); */
-    width: 200px;
-    height: 100px;
-    /* text-align: center; */
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: space-around;
+}
+
+.game-board {
+  border: 5px solid green;
+  font-family: cursive;
+  font-weight: bold;
+}
+
+.grid {
+  display: grid;
+  background-color: #ccc;
+  max-width: 900px;
+  width: 500px;
+  margin: 0 auto;
+  grid-template-columns: repeat(7, 1fr);
+  position: relative;
+  cursor: pointer;
+}
+
+.box {
+  text-align: center;
+  padding: 5px;
+  font-weight: bold;
+  position: relative;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.chosen {
+  opacity: 1;
+}
+
+.countdown {
+  position: absolute;
+  top: 400px;
+  right: 100px;
+  right: 200px;
+  width: 30px;
+  font-size: 50px;
+  text-align: center;
+  color: red;
+}
+
+button {
+  position: absolute;
+  top: 30px;
+  right: 70px;
+  background: #010124;
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding: 20px 50px;
+  border-radius: 5px;
+  z-index: 200;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.score {
+  font-size: 80px;
+  color: black;
+  position: absolute;
+  top: 20%;
+  right: 50px;
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  width: 200px;
+  height: 100px;
+  /* text-align: center; */
+}
+
+.orange-red {
+  color: orangered;
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" href="../styles/register.css" />
+    <script src="../pages/dom.js" defer></script>
+  </head>
+  <body>
+    <h1>Welcome to Deb's Arcade</h1>
+    <form id="form">
+      <h2>Register To Play</h2>
+      <label for="firstname">
+        First Name:
+        <input
+          id="firstname"
+          name="firstname"
+          type="text"
+          placeholder="first name"
+          required
+        />
+      </label>
+      <p>
+        One or more Lowercase and Uppercase letters, as well as a hyphen is
+        allowed. Can't be blank.
+      </p>
+
+      <label for="lastname">
+        Last Name:
+        <input
+          id="lastname"
+          name="lastname"
+          type="text"
+          placeholder="last name"
+          required
+        />
+      </label>
+      <p>
+        One or more Lowercase and Uppercase letters, as well as a space and
+        numbers are allowed.
+      </p>
+
+      <label for="email">
+        Email:
+        <input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="email"
+          required
+        />
+      </label>
+
+      <p>A Google address format with letters, numbers before the @ sign.</p>
+
+      <label for="password">
+        Password
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="password"
+          required
+        />
+      </label>
+      <p>2 a's, 8 or more characters.</p>
+
+      <label for="cpassword">
+        Confirm Password:
+        <input
+          id="cpassword"
+          name="cpassword"
+          type="password"
+          placeholder="confirm password"
+          required
+        />
+      </label>
+      <p>2 a's, 8 or more characters.</p>
+
+      <button class="btn"><a href="./index.html">Submit the Form</a></button>
+    </form>
+  </body>
+</html>

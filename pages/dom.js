@@ -1,15 +1,15 @@
-let gameBoard = document.querySelector(".game-board");
+let gameBoard = document.getElementById("game-board");
 gameBoard.classList.add("grid");
-// let randomNumber = Math.floor(Math.random() * 49) + 1;
-// console.log(randomNumber);
-let el;
-// let randomNum = document.querySelector(".random-number");
 let btn = document.querySelector(".start-btn");
 let div = document.querySelectorAll("div");
 const scoreEl = document.querySelector(".score");
-const countdownEl = document.querySelector(".countdown");
+const countdownEl = document.querySelector(".score").nextElementSibling;
 const startEl = document.querySelector(".start-btn");
+const container = document.querySelector(".container");
+const orangeRedEl = document.querySelector(".orange-red");
 
+let el;
+let num;
 let score = 0;
 let timeUp = false;
 let timeLimit = 20000;
@@ -17,6 +17,22 @@ let countdown;
 let birdSound;
 let gameOverSound;
 let shipDeath;
+
+const btnColor = prompt("Which color do you like best - purple or orange?  ");
+
+const btnColor2 = prompt("Which color do you like between pink and green? ");
+
+const chosenEl = prompt("Should I change a class or an id?  ");
+if (chosenEl === "class") {
+  btn.id = "play";
+} else {
+  container.id = "temp";
+}
+
+btn.style.backgroundColor = `${btnColor}`;
+btn.style.color = `${btnColor2}`;
+
+startEl.addEventListener("click", startGame);
 
 function createEl(type, content, cls, cls2, cls3) {
   el = document.createElement(type);
@@ -35,13 +51,13 @@ let ships = document.querySelectorAll(".ship");
 function appendShips() {
   Array.from(box).forEach((boxlet) => {
     if (boxlet.innerText) {
-      boxlet.innerHTML += `<img src="../ship.png" class="ship " style="width: 40px; height: 40px"/>`;
+      boxlet.innerHTML += `<img src="../images/ship.png" class="ship " style="width: 40px; height: 40px"/>`;
     }
   });
 }
 
 //only show numbers on certain boxes.  Hide the boxes
-function createBoard() {
+function createBoard(num) {
   for (let i = 1; i <= 49; i++) {
     if (i % 3 === 0 || i % 5 === 0) {
       createEl("div", `${i}`, "box", "hidden", "ship");
@@ -55,7 +71,7 @@ function toggleShips() {
   box.forEach((item) => {
     item.addEventListener("click", (e) => {
       e.preventDefault();
-    //   console.log(item);
+      //   console.log(item);
       if (item.classList.contains("no-ship")) {
         return;
       } else if (item.classList.contains("hidden")) {
@@ -73,26 +89,28 @@ function toggleShips() {
 }
 
 function sinkShip(e) {
-    console.log("sink ship")
-    if(e.target){
-        shipDeath = new Audio("../sounds/images_sounds_enemy-death.wav");
-        shipDeath.play();
-        console.log(this)
-        this.style.backgroundImage = 'url("../red-x.jpg")'
-        this.style.backgroundPosition = "center"
-        this.style.backgroundRepeat = "no-repeat"
-        this.style.backgroundSize = "cover"
-        score++;
-        scoreEl.textContent = score;
-    }
-    return
+  console.log("sink ship");
+  if (e.target) {
+    shipDeath = new Audio("../sounds/images_sounds_enemy-death.wav");
+    shipDeath.play();
+    console.log(this);
+    this.style.backgroundImage = 'url("../images/red-x.jpg")';
+    this.style.backgroundPosition = "center";
+    this.style.backgroundRepeat = "no-repeat";
+    this.style.backgroundSize = "cover";
+    this.style.zIndex = "500";
+    score++;
+    scoreEl.textContent = score;
+  } else {
+    startGame();
+  }
 }
 
 function startGame() {
-  console.log("startGame")
+  console.log("startGame");
   createBoard();
   appendShips();
-  
+
   birdSound = new Audio("../sounds/birds.mp3");
   birdSound.play();
   countdown = timeLimit / 1000;
@@ -104,24 +122,23 @@ function startGame() {
   score = 0;
   setTimeout(function () {
     timeUp = true;
-    sinkShip()
+    sinkShip();
   }, timeLimit);
   let startCountDown = setInterval(function () {
-      countdown--;
-      countdownEl.textContent = countdown;
-      if (countdown < 0) {
-          countdown = 0;
-          birdSound.pause();
-          clearInterval(startCountDown);
-          timeUp = true;
-          endGame();
-      
+    countdown--;
+    countdownEl.textContent = countdown;
+    if (countdown < 0) {
+      countdown = 0;
+      birdSound.pause();
+      clearInterval(startCountDown);
+      timeUp = true;
+      endGame();
     }
   }, 1000);
 }
 
 function endGame() {
-    console.log("game")
+  console.log("game");
   gameOverSound = new Audio("../sounds/images_sounds_game_over.wav");
   gameOverSound.play();
   if (score > 10) {
@@ -133,10 +150,37 @@ function endGame() {
   }
 }
 
-startEl.addEventListener("click", startGame);
+//The document fragment interfered with the eventListener on the play button
+//
 
+// const supportsTemplate = function() {
+//     return "content" in document.createElement("template")
+// }
 
+//     document.addEventListener("DOMContentLoaded", () => {
+//         if(supportsTemplate()){
+//             console.log("Templates are supported")
+//             let templateEl = document.querySelector("#template")
+//             let content = templateEl.content
+//             document.body.appendChild(content)
+//             document.body.appendChild(document.querySelector("#template").content)
+//         }else{
 
+//         let df = document.createDocumentFragment()
+//         let div1 = document.createElement("div")
+//         let div2 = document.createElement("div")
+//         let btn = document.createElement("button")
+//         div1.classList.add("score")
+//         div1.textContent = "0"
+//         div2.classList.add("countdown")
+//         button.classList.add("start-btn")
+//         btn.textContent.add("Start Game")
+//         df.appendChild(div1)
+//         df.appendChild(div2)
+//         df.appendChild(button)
+//         document.querySelector(".container").appendChild(df)
+//         }
+// })
 
 ships.forEach((ship) => {
   return ship.addEventListener("click", sinkShip);
